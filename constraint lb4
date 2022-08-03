@@ -1,0 +1,164 @@
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 15
+Server version: 8.0.29-0ubuntu0.22.04.2 (Ubuntu)
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> Create Database Virajdb1;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> use Virajdb1;
+Database changed
+mysql> create table Student_info(student_id int NOT NULL,Student_name varchar(25), city varcHAR(20));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into Student_info Values(1,"Viraj","Nagar");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from Student_info;
++------------+--------------+-------+
+| student_id | Student_name | city  |
++------------+--------------+-------+
+|          1 | Viraj        | Nagar |
++------------+--------------+-------+
+1 row in set (0.00 sec)
+
+mysql> insert into Student_info Values(NULL,"Viraj","Nagar");
+ERROR 1048 (23000): Column 'student_id' cannot be null
+mysql> select * from Student_info;
++------------+--------------+-------+
+| student_id | Student_name | city  |
++------------+--------------+-------+
+|          1 | Viraj        | Nagar |
++------------+--------------+-------+
+1 row in set (0.00 sec)
+
+mysql> create table Student_inf(student_id int NOT NULL,Student_name varchar(25) UNIQUE , city varcHAR(20));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into Student_info Values(1,"Viraj","Nagar");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from Student_info;
++------------+--------------+-------+
+| student_id | Student_name | city  |
++------------+--------------+-------+
+|          1 | Viraj        | Nagar |
+|          1 | Viraj        | Nagar |
++------------+--------------+-------+yashlomate48@gmail.com
+2 rows in set (0.01 sec)
+
+mysql> select * from Student_inf;
+Empty set (0.01 sec)
+
+mysql> insert into Student_inf Values(1,"Viraj","Nagar");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from Student_inf;
++------------+--------------+-------+
+| student_id | Student_name | city  |
++------------+--------------+-------+
+|          1 | Viraj        | Nagar |
++------------+--------------+-------+
+1 row in set (0.00 sec)
+
+mysql> insert into Student_inf Values(2,"Viraj","Nagar");
+ERROR 1062 (23000): Duplicate entry 'Viraj' for key 'Student_inf.Student_name'
+mysql> create table Student_in(student_id int Primary Key ,Student_name varchar(25) , city varcHAR(20));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into Student_in Values(1,"Viraj","Nagar");
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into Student_in Values(1,"Viraj","Nagar");
+ERROR 1062 (23000): Duplicate entry '1' for key 'Student_in.PRIMARY'
+mysql> insert into Student_in Values(NULL,"Viraj","Nagar");
+ERROR 1048 (23000): Column 'student_id' cannot be null
+mysql> create table Student_i(student_id int,Student_name varchar(25) , city varcHAR(20) DEFAULT "Pune");
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into Student_i Values(1,"Viraj");
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into Student_i Values(1,"Viraj",,);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',)' at line 1
+mysql> insert into Student_i Values(1,"Viraj",);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> insert into Student_i Values(1,"Viraj","Nagar");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from Student_i;
++------------+--------------+-------+
+| student_id | Student_name | city  |
++------------+--------------+-------+
+|          1 | Viraj        | Nagar |
++------------+--------------+-------+
+1 row in set (0.00 sec)
+
+mysql> insert into Student_i Values(1,"Viraj","");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from Student_i;
++------------+--------------+-------+
+| student_id | Student_name | city  |
++------------+--------------+-------+
+|          1 | Viraj        | Nagar |
+|          1 | Viraj        |       |
++------------+--------------+-------+
+2 rows in set (0.00 sec)
+
+mysql> insert into Student_i Values(1,"Viraj");
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into Student_i(student_id,Student_name)values(2,"Tejas");
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from Student_i;
++------------+--------------+-------+
+| student_id | Student_name | city  |
++------------+--------------+-------+
+|          1 | Viraj        | Nagar |
+|          1 | Viraj        |       |
+|          2 | Tejas        | Pune  |
++------------+--------------+-------+
+3 rows in set (0.01 sec)
+
+mysql> create table Student(student_id int Primary Key Auto Increment ,Student_name varchar(25) , city varcHAR(20));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Auto Increment ,Student_name varchar(25) , city varcHAR(20))' at line 1
+mysql> create table Student(student_id int Primary Key Auto increment ,Student_name varchar(25) , city varcHAR(20));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Auto increment ,Student_name varchar(25) , city varcHAR(20))' at line 1
+mysql> create table Student(student_id int Primary Key Auto_increment ,Student_name varchar(25) , city varcHAR(20));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into Student(Student_name,city)values(101,"Viraj","Nagar");
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into Student values(101,"Viraj","Nagar");
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from Student;
++------------+--------------+-------+
+| student_id | Student_name | city  |
++------------+--------------+-------+
+|        101 | Viraj        | Nagar |
++------------+--------------+-------+
+1 row in set (0.00 sec)
+
+mysql> insert into Student(Student_name,city)values("Tejas","Pune");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from Student;
++------------+--------------+-------+
+| student_id | Student_name | city  |
++------------+--------------+-------+
+|        101 | Viraj        | Nagar |
+|        102 | Tejas        | Pune  |
++------------+--------------+-------+
+2 rows in set (0.00 sec)
+
+mysql> 
+
